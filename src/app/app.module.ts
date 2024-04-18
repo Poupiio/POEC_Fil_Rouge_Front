@@ -9,9 +9,11 @@ import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
 import { RegisterComponent } from './register/register.component';
 import { ButtonComponent } from './button/button.component';
-import { DragDropComponent } from './drag-drop/drag-drop.component';
-import { RecapProjetComponent } from './recap-projet/recap-projet.component';
+
+
 import { PageProjetsComponent } from './page-projets/page-projets.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { ProjetsListComponent } from './projets-list/projets-list.component';
 
 
 @NgModule({
@@ -22,9 +24,11 @@ import { PageProjetsComponent } from './page-projets/page-projets.component';
     UserComponent,
     RegisterComponent,
     ButtonComponent,
-    DragDropComponent,
-    RecapProjetComponent,
-    PageProjetsComponent
+ 
+
+    PageProjetsComponent,
+    TasksComponent,
+    ProjetsListComponent
     
   ],
   imports: [

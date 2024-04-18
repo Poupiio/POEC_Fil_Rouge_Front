@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-recap-projet',
+  selector: 'app-projets-list',
   template: `
     <p>
-      recap-projet works!
+      projets-list works!
     </p>
   `,
   styles: [
   ]
 })
-export class RecapProjetComponent implements OnInit {
+export class ProjetsListComponent implements OnInit {
 
   constructor() { }
 

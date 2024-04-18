@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-drag-drop',
+  selector: 'app-tasks',
   template: `
     <p>
-      drag-drop works!
+      tasks works!
     </p>
   `,
   styles: [
   ]
 })
-export class DragDropComponent implements OnInit {
+export class TasksComponent implements OnInit {
 
   constructor() { }
 
