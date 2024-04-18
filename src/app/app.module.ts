@@ -11,6 +11,8 @@ import { RegisterComponent } from './register/register.component';
 import { ButtonComponent } from './button/button.component';
 import { DragDropComponent } from './drag-drop/drag-drop.component';
 import { RecapProjetComponent } from './recap-projet/recap-projet.component';
+import { PageProjetsComponent } from './page-projets/page-projets.component';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { RecapProjetComponent } from './recap-projet/recap-projet.component';
     RegisterComponent,
     ButtonComponent,
     DragDropComponent,
-    RecapProjetComponent
+    RecapProjetComponent,
+    PageProjetsComponent
+    
   ],
   imports: [
     BrowserModule,
