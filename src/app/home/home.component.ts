@@ -14,11 +14,10 @@ import { Router } from '@angular/router';
 
 <div>
     <p>déjà client?</p> 
-    <app-button [title]="title2" (onclick)="login()"></app-button>
 </div>
 
     <p *ngIf = "loggedInUserName"> Welcome, {{loggedInUserName}}</p>
-    <app-button [title]="title" (onclick)="onClickMe()">
+    <app-button [title]="title" [loading]= "isloading" (onclick)="onClickMe()">
   </app-button>
   `,
   styles: [
@@ -26,8 +25,8 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   title:string="Créer mon projet";
-  title2:string="Login";
   loggedInUserName: string = "";
+  isloading: boolean=false;
 
   constructor(
     private router:Router
@@ -38,11 +37,19 @@ export class HomeComponent implements OnInit {
 
   onClickMe():void {
     alert('reussi');
+    
     this.router.navigate(['/login']);
+
   }
 
-  login():void {
-    this.router.navigate(['/login']);
-  }
+ /* login():void {
+    this.isloading=true;
+    setTimeout(()=>{
+      this.isloading=false; 
+      
+      this.router.navigate(['/login']);
+    },2000);
+    
+  }*/
 
 }

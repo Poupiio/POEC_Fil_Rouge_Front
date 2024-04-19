@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
+
 import { UserComponent } from './user/user.component';
 import { RegisterComponent } from './register/register.component';
 import { ButtonComponent } from './button/button.component';
@@ -14,13 +14,18 @@ import { ButtonComponent } from './button/button.component';
 import { PageProjetsComponent } from './page-projets/page-projets.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { ProjetsListComponent } from './projets-list/projets-list.component';
+import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent,
+
     UserComponent,
     RegisterComponent,
     ButtonComponent,
@@ -28,15 +33,18 @@ import { ProjetsListComponent } from './projets-list/projets-list.component';
 
     PageProjetsComponent,
     TasksComponent,
-    ProjetsListComponent
+    ProjetsListComponent,
+    LoginComponent
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
