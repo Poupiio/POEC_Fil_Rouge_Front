@@ -22,7 +22,7 @@ import { ProjetsService } from '../projets.service';
       <p>{{ projet.name }}</p>
     <div>     
       <app-button [title]="title2" (click)="update(projet.id)"></app-button>
-      <app-button [title]="title3" (click)="delete()"></app-button>  
+      <app-button [title]="title3" (click)="delete(projet.id)"></app-button>  
     </div>
     </div>
 
@@ -57,8 +57,15 @@ this.router.navigate(['/formulaire-projet'])
     this.router.navigate(['/formulaire-projet', id])
   }
 
-  delete():void {
-    
+  delete(projectId: number): void {
+    if (confirm("Are you sure you want to delete this project?")) {
+      this.projetService.deleteProject(projectId);
+      this.projets = this.projets.filter(projet => projet.id !== projectId);
+    }
+  }
+
+  viewTasks(id:number):void{
+    this.router.navigate(['/tasks',id]);
   }
 
 }

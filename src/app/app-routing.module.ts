@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 
 import { PageProjetsComponent } from './page-projets/page-projets.component';
 import { FormulaireProjetComponent } from './formulaire-projet/formulaire-projet.component';
+import { TasksComponent } from './tasks/tasks.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -13,6 +14,8 @@ const routes: Routes = [
   { path : 'page-projets', component:PageProjetsComponent},
   { path : 'formulaire-projet',component:FormulaireProjetComponent},
   { path: 'formulaire-projet/:id', component: FormulaireProjetComponent }, 
+  { path: 'tasks/:id', component: TasksComponent }, 
+  { path: 'tasks', component:TasksComponent}
 
 
 ];

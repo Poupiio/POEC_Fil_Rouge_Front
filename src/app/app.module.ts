@@ -17,6 +17,7 @@ import { ProjetsListComponent } from './projets-list/projets-list.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { FormulaireProjetComponent } from './formulaire-projet/formulaire-projet.component';
+import { SortableModule } from 'ngx-bootstrap/sortable';
 
 
 
@@ -44,6 +45,7 @@ import { FormulaireProjetComponent } from './formulaire-projet/formulaire-projet
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    SortableModule.forRoot(),
   ],
   providers: [
   ],
