@@ -20,7 +20,7 @@ import { Component, OnInit } from '@angular/core';
   </div>
  
 </form>
-<app-button [title]= "title" (onclick)="login()"></app-button>
+<app-button [title]= "title" (click)="login()"></app-button>
 </div>
   `,
   styles: [

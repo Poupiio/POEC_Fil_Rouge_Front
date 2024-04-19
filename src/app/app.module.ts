@@ -16,6 +16,7 @@ import { TasksComponent } from './tasks/tasks.component';
 import { ProjetsListComponent } from './projets-list/projets-list.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { FormulaireProjetComponent } from './formulaire-projet/formulaire-projet.component';
 
 
 
@@ -34,7 +35,8 @@ import { LoginComponent } from './login/login.component';
     PageProjetsComponent,
     TasksComponent,
     ProjetsListComponent,
-    LoginComponent
+    LoginComponent,
+    FormulaireProjetComponent
     
   ],
   imports: [
