@@ -1,1 +1,81 @@
-<h1>Tâches</h1>
+<h1>Créer une tâche</h1>
+
+<div class="container">
+   <form
+      class="form mx-auto col-sm-12 col-md-10 col-lg-10 col-xl-8 col-xxl-6"
+      #addTask="ngForm"
+      (ngSubmit)="submit()"
+   >
+
+   <!-- Title -->
+   <div class="input-group mb-3">
+      <span class="input-group-text taskActions" id="taskTitle">Titre</span>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Acheter du pain..."
+        aria-label="Acheter du pain..."
+        aria-describedby="taskTitle"
+        [(ngModel)]="title"
+        name="title"
+        required
+      />
+   </div>
+
+   <!-- Description -->
+   <div class="input-group mb-3">
+      <span class="input-group-text taskActions" id="taskDescription"
+        >Description</span
+      >
+      <textarea
+        class="form-control"
+        placeholder="Description de la tâche..."
+        aria-label="With textarea"
+        name="description"
+        [(ngModel)]="description"
+      ></textarea>
+   </div>
+
+   <!-- Status -->
+   <div class="input-group mb-3">
+      <label class="input-group-text taskActions" for="taskStatus"
+        >Statut</label
+      >
+      <select
+        class="form-select"
+        id="taskStatus"
+        name="status"
+        [(ngModel)]="status"
+      >
+        <option value="TO_DO">À faire</option>
+        <option value="ONGOING">En cours</option>
+        <option value="DONE">Terminé</option>
+      </select>
+   </div>
+
+   <!-- Estimated hours -->
+   <div class="input-group mb-3">
+      <span class="input-group-text taskActions" id="estimatedHours"
+        >Temps estimé (en heures)</span
+      >
+      <input
+        type="number"
+        class="form-control"
+        placeholder="1"
+        aria-label="Temps estimé"
+        aria-describedby="estimatedHours"
+        name="estimation"
+        [(ngModel)]="estimation"
+      />
+   </div>
+
+   <div class="d-flex justify-content-end">
+      <button
+        type="submit"
+        class="btn btn-primary btn-lg addTask"
+      >
+        &#43;
+      </button>
+   </div>
+  </form>
+</div>

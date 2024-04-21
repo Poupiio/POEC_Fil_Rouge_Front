@@ -1,0 +1,93 @@
+
+h1 {
+   color: #ADB0E5ff;
+   text-transform: uppercase;
+   letter-spacing: 5px;
+   display: block;
+   width: 500px;
+   text-align: center;
+   margin: 0 auto 50px;
+   padding: 15px 20px;
+   background: rgba(173, 176, 229, 0.08);
+   border-radius: 16px;
+   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+   backdrop-filter: blur(14.9px);
+}
+
+.loginForm {
+   width: 500px;
+   height: 500px;
+   margin: 0 auto;
+   padding: 15px;
+   border-radius: 50%;
+   
+   background: rgba(173, 176, 229, 0.19);
+   box-shadow: 0px 0px 20px 6px #fdb3d8b3;
+   backdrop-filter: blur(6.6px);
+
+   color: #ADB0E5;
+
+   .loginLabel {
+      font-weight: 600;
+      font-size: 1.3rem;
+   }
+   .loginInput {
+      &::placeholder {
+         color: #ADB0E5;
+      }
+   }
+   
+   .loginBtn {
+      background: #9a83acc6;
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border: none;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: 0.3s ease-in-out;
+      margin-top: 25px;
+   
+      &:hover {
+         box-shadow: 1px 1px 25px -5px #fff;
+      }
+   }
+   
+   .registerRedirect, .loginRedirect {
+      color: #fff;
+      font-size: 1.2rem;
+      margin-top: 25px;
+      transition: 0.3s ease-in-out;
+   
+      &:hover {
+         transform: scale(1.1);
+      }
+   }
+}
+
+.registerForm {
+   box-shadow: 0px 0px 20px 6px rgb(185, 240, 245);
+}
+
+@media screen and (max-width: 860px) {
+   .loginForm {
+      width: 450px;
+      height: 450px;
+   }
+}
+
+@media screen and (max-width: 492px) {
+   .loginForm {
+      width: 400px;
+      height: 400px;
+   }
+}
+
+@media screen and (max-width: 500px) {
+   .loginForm {
+      width: 350px;
+      height: 350px;
+      border-radius: 18px;
+   }
+}

@@ -1,1 +1,155 @@
-<h1>Mes projets</h1>
+<div class="d-flex justify-content-center">
+   <button class="btn btn-primary projectBtn" (click)="toggleOffcanvas(); getProjects()">Mes Projets</button>
+</div>
+
+<h2>{{ pageTitle }}</h2>
+
+<div class="offcanvas offcanvas-start canvasBackground" tabindex="-1" id="myOffCanvas" aria-labelledby="myOffCanvas">
+   <div class="offcanvas-header mt-3 mb-3">
+      <h5 class="offcanvas-title" id="myOffCanvas">Mes Projets</h5>
+      <button type="button" class="btn-close" (click)="toggleOffcanvas()" aria-label="Close"></button>
+   </div>
+   <div class="offcanvas-body">
+      <div *ngFor="let project of projects" class="d-flex justify-content-between align-items-center displayProject">
+         <h5 (click)="closeOffcanvas(); getProjectById(project.id); updatePageTitle(project.name); updateTasksDisplay()">{{ project.name }}</h5>
+
+         <div class="btn-container">
+
+            <!-- Bouton de modification -->
+            <div type="button" class="btn btn-success updateBtn" (click)="toggleUpdateForm(project.id, project.name)">
+               <i class="bi bi-pencil-fill"></i>
+            </div>
+
+            <!-- Bouton de suppression -->
+            <div type="button" class="btn btn-danger" (click)="deleteProject(project.id)">
+               <i class="bi bi-trash-fill"></i>
+            </div>
+         </div>
+      </div>
+
+      <div class="d-flex justify-content-center">
+         <div *ngIf="!addForm && !updateForm" type="button" class="btn btn-primary addProject" (click)="toggleAddForm()">
+            <i class="bi bi-plus-lg"></i>
+         </div>
+      </div>
+
+      <!-- Affichage du formulaire d'ajout de projet -->
+     <ng-container *ngIf="addForm">
+        <form class="form mx-auto addProjectForm" #projectAddForm="ngForm" (ngSubmit)="addProject(projectName)">
+           
+           <div class="input-group mb-3">
+              <span class="input-group-text" id="projectName">Nom</span>
+              <input
+              type="text"
+              class="form-control"
+              placeholder="POEC Java"
+              aria-label="Nom du projet"
+              aria-describedby="projectName"
+              [(ngModel)]="projectName"
+              name="projectName"
+              />
+           </div>
+           <button type="button" class="btn btn-primary">Ajouter</button>
+        </form>
+     </ng-container>
+
+     <!-- Affichage du formulaire de modification de projet -->
+     <ng-container *ngIf="updateForm">
+        <form class="form mx-auto updateProjectForm" #projectEditForm="ngForm" (ngSubmit)="editProject(selectedProjectId)">
+           
+           <div class="input-group mb-3">
+              <span class="input-group-text" id="updatedProjectName">Nom</span>
+              <input
+              type="text"
+              class="form-control"
+              placeholder="POEC Java"
+              aria-label="Nom du projet"
+              aria-describedby="updatedProjectName"
+              [(ngModel)]="updatedProjectName"
+              name="updatedProjectName"
+              />
+           </div>
+           <button type="button" class="btn btn-primary">Modifier</button>
+        </form>
+     </ng-container>
+
+   </div>
+   
+</div>
+
+<!-- Partie pour l'affichage des tâches en drag and drop -->
+<div class="row wrapper mx-auto d-flex justify-content-center" *ngIf="projectId">
+
+   <!--  COLONNE À FAIRE -->
+   <div class="col-xs-6 col-6 col-md-6 col-lg-3 col-xxl-3 m-2 status">
+      <h2>À faire</h2>
+      <bs-sortable
+         [(ngModel)]="todo"
+         fieldName="title"
+         itemClass="sortable-item"
+         itemActiveClass="sortable-item-active"
+         placeholderItem="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+         placeholderClass="placeholderStyle text-center"
+         wrapperClass="sortable-wrapper"
+         [itemTemplate]="taskTemplate"   
+      >
+      </bs-sortable>
+   </div>
+
+   <!-- COLONNE EN COURS -->
+   <div class="col-xs-6 col-6 col-md-6 col-lg-3 col-xxl-3 m-2 status">
+      <h2>En cours</h2>
+      <bs-sortable
+         [(ngModel)]="ongoing"
+         fieldName="title"
+         itemClass="sortable-item"
+         itemActiveClass="sortable-item-active"
+         placeholderItem="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+         placeholderClass="placeholderStyle text-center"
+         wrapperClass="sortable-wrapper"
+         [itemTemplate]="taskTemplate"
+      >
+      </bs-sortable>
+   </div>
+
+   <!-- COLONNE TERMINÉ -->
+   <div class="col-xs-6 col-6 col-md-6 col-lg-3 col-xxl-3 m-2 status">
+      <h2>Terminé</h2>
+      <bs-sortable
+         [(ngModel)]="done"
+         fieldName="title"
+         itemClass="sortable-item"
+         itemActiveClass="sortable-item-active"
+         placeholderItem="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+         placeholderClass="placeholderStyle text-center"
+         wrapperClass="sortable-wrapper"
+         [itemTemplate]="taskTemplate"
+      >
+      </bs-sortable>
+   </div>
+   
+   <ng-template #taskTemplate let-item="item" let-index="index">
+      <div class="d-flex justify-content-between align-items-center">
+         <div>{{ item.initData.title }}</div>
+         
+         <!-- Bouton visualisation des détails de la tâche -->
+         <div type="button" class="btn btn-info icons" (click)="getTaskDetails(item.initData.id)">
+            <i class="bi bi-eye-fill taskDetail"></i>
+         </div>
+   
+         <!-- Bouton pour modifier la tâche -->
+         <div type="button" routerLink="/task/update" class="btn btn-success icons" (click)="redirectUpdateForm(projectId, item.initData.id)">
+            <i class="bi bi-pencil-fill"></i>
+         </div>
+   
+         <!-- Bouton pour supprimer la tâche -->
+         <div type="button" class="btn btn-danger icons" (click)="deleteTask(projectId, item.initData.id)">
+            <i class="bi bi-trash-fill"></i>
+         </div>
+      </div>
+   </ng-template>
+ 
+</div>
+<div class="d-flex justify-content-center">
+   <button type="button" class="btn btn-primary" (click)="onTaskAdding(projectId)" *ngIf="projectId">Ajouter une tâche</button>
+</div>
