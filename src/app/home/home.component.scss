@@ -1,0 +1,42 @@
+.home-container {
+   color: #F0F1FE;
+
+   h1 {
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 8px;
+      font-size: 3rem;
+   }
+   h2 {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 2rem;
+      margin-bottom: 50px;
+   }
+   
+   h3 {
+         font-size: 1.8rem;
+   }
+   
+   section {
+      background: rgba(173, 176, 229, 0.19);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(6.9px);
+      margin: 40px auto;
+      padding: 1rem;
+      font-size: 1.2rem;
+      border-radius: 16px;
+   }
+
+   #choice {
+      ul {
+         padding: 0;
+         
+         #signup {
+            color: rgb(253,176,216);
+            font-weight: 600;
+         }
+      }
+   }
+   
+}

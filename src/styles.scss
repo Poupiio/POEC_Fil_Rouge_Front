@@ -1,43 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+    body {
+        background-image: radial-gradient(circle, #2f4858, #335262, #365d6d, #3a6777, #3e7280);
+
+        li {
+            list-style: none;
+        }
+
+        a, button {
+            text-decoration: none;
+            transition: 0.3s ease-in-out;
+        }
+    }
+}
+
 
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
 
 /* Importing Datepicker SCSS file. */
 @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
-
-/* Importing Bootstrap SCSS file. */
-@import "~bootstrap/scss/bootstrap";
-
-/* Importing Datepicker SCSS file. */
-@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
-
-.navbar {
-    display: flex; /* Utilisation de flexbox pour aligner les éléments horizontalement */
-    justify-content: start; /* Les éléments sont espacés également sur la ligne */
-    align-items: center; /* Centre les éléments verticalement */
-    background-color: #1d1c1c; /* Couleur de fond de la barre de navigation */
-    color: #f1efef; /* Couleur du texte */
-    padding: 10px 20px; /* Espacement intérieur */
-}
-
-.navbar-item {
-    margin-right: 10px; /* Espacement entre les éléments */
-}
-
-.navbar-item:last-child {
-    margin-right: 0; /* Supprime l'espacement à droite du dernier élément */
-}
-
-.navbar-item a {
-    color: #fff; /* Couleur du texte des liens */
-    text-decoration: none; /* Supprime les soulignements des liens */
-}
-
-.navbar-item a:hover {
-    text-decoration: underline; /* Souligne les liens au survol */
-}
-
-
-/* Importing Bootstrap SCSS file. */
-@import "~bootstrap/scss/bootstrap";
+ 
