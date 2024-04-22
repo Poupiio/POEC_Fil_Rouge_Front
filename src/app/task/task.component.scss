@@ -1,39 +1,35 @@
+$primary-color: #F0F1FE;
+$secondary-color: #ADB0E5;
+
 h1 {
    text-align: center;
-   color: coral;
+   color: $primary-color;
    margin-bottom: 30px;
 }
 
 .form {
-   padding: 15px;
-   background: rgba(142, 78, 198, 0.16);
-   border-radius: 16px;
+   padding: 30px;
+   background: rgba(173, 176, 229, 0.19);
    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-   backdrop-filter: blur(5px);
-
-   h2 {
-      text-align: center;
-      font-size: 1.5rem;
-      color: #8E4EC6;
-      margin-bottom: 30px;
-   }
+   backdrop-filter: blur(6.9px);
+   border-radius: 16px;
 
    .taskActions {
-      background: #8E4EC6;
-      color: #fff;
+      background: $secondary-color;
+      color: $primary-color;
       font-weight: 600;
       border: none;
    }
 
    .addTask {
-      background-color: coral;
-      border: none;
+      background-color: $secondary-color;
+      border: solid 1px $primary-color;
       font-weight: 600;
       border-radius: 50%;
       transition: 0.3s ease-in-out;
 
       &:hover {
-         box-shadow: 0 0 18px 3px coral;
+         background-color: #adb0e5be;
       }
    }
 

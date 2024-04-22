@@ -111,7 +111,7 @@ export class ProjectComponent implements OnInit {
   }
 
   // Ajouter un projet
-  async addProject(projectName: string) {
+  async addProject() {
     // Données à envoyer au serveur
     const newProject: ProjectForm = { 
       name: this.projectName

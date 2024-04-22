@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { TaskStatus, TaskForm, TaskToDisplay, Task } from "../types";
 import { ActivatedRoute, Router } from '@angular/router';
-// import { TaskDataService } from '../services/task-data.service';
 import { TaskService } from '../services/task.service';
 import { ProjectService } from '../services/project.service';
 
@@ -26,7 +25,6 @@ export class TaskComponent implements OnInit {
   constructor(
     private router: Router,
     private taskService: TaskService,
-    private projectService: ProjectService,
     private route: ActivatedRoute
   ) { }
 

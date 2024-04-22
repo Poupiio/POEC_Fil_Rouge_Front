@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { ProjectComponent } from './project/project.component';
 import { TaskComponent } from './task/task.component';
-import { UpdatetaskComponent } from './updatetask/updatetask.component';
+import { UpdateTaskComponent } from './updatetask/updatetask.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
@@ -25,7 +25,7 @@ import { MyhttpService } from 'myhttp.service';
     HomeComponent,
     ProjectComponent,
     TaskComponent,
-    UpdatetaskComponent,
+    UpdateTaskComponent,
     LoginComponent,
     RegisterComponent,
     UserComponent,
