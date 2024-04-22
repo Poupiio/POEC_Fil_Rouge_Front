@@ -36,6 +36,7 @@ header {
       li{
          display: flex;
          justify-items: end;
+         margin-right: 30px;
       }
 
       li a {
@@ -44,6 +45,7 @@ header {
          position: relative; 
          color: white;
          width: auto;
+         font-size: 1.4rem;
       }
       
       li a:hover, a:active, a:focus {
