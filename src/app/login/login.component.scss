@@ -64,8 +64,9 @@ h1 {
          transform: scale(1.1);
       }
    }
-}
 
+   
+}
 
 @media screen and (min-width: 1100px) and (max-width: 1399px){
    .loginForm {
@@ -78,7 +79,7 @@ h1 {
    }
 }
 
-@media screen and (min-width: 500px) and (max-width: 1099) {
+@media screen and (min-width: 500px) and (max-width: 1099px) {
    .loginForm {
       width: 375px;
       height: 375px;
