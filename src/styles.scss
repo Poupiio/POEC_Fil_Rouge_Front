@@ -4,6 +4,7 @@
     box-sizing: border-box;
     
     body {
+        min-height: 100vh;
         background-image: radial-gradient(circle, #2f4858, #335262, #365d6d, #3a6777, #3e7280);
 
         li {

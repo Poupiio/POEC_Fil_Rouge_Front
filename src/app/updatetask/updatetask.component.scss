@@ -1,0 +1,43 @@
+$primary-color: #F0F1FE;
+$secondary-color: #ADB0E5;
+
+h1 {
+   text-align: center;
+   color: $primary-color;
+   margin-bottom: 30px;
+}
+
+.form {
+   padding: 30px;
+   background: rgba(173, 176, 229, 0.19);
+   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+   backdrop-filter: blur(6.9px);
+   border-radius: 16px;
+
+   h2 {
+      text-align: center;
+      font-size: 1.5rem;
+      color: #8E4EC6;
+      margin-bottom: 30px;
+   }
+
+   .taskActions {
+      background: $secondary-color;
+      color: $primary-color;
+      font-weight: 600;
+      border: none;
+   }
+
+   .updateTask {
+      background-color: $secondary-color;
+      border: solid 1px $primary-color;
+      font-weight: 600;
+      border-radius: 50%;
+      transition: 0.3s ease-in-out;
+
+      &:hover {
+         background-color: #adb0e5be;
+      }
+   }
+
+}

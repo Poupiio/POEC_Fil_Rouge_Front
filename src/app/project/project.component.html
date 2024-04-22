@@ -81,8 +81,8 @@
 <div class="row wrapper mx-auto d-flex justify-content-center" *ngIf="projectId">
 
    <!--  COLONNE À FAIRE -->
-   <div class="col-xs-6 col-6 col-md-6 col-lg-3 col-xxl-3 m-2 status">
-      <h2>À faire</h2>
+   <div class="col-xs-6 col-6 col-md-6 col-lg-3 col-xxl-3 m-3 status">
+      <h3>À faire</h3>
       <bs-sortable
          [(ngModel)]="todo"
          fieldName="title"
@@ -97,8 +97,8 @@
    </div>
 
    <!-- COLONNE EN COURS -->
-   <div class="col-xs-6 col-6 col-md-6 col-lg-3 col-xxl-3 m-2 status">
-      <h2>En cours</h2>
+   <div class="col-xs-6 col-6 col-md-6 col-lg-3 col-xxl-3 m-3 status">
+      <h3>En cours</h3>
       <bs-sortable
          [(ngModel)]="ongoing"
          fieldName="title"
@@ -113,8 +113,8 @@
    </div>
 
    <!-- COLONNE TERMINÉ -->
-   <div class="col-xs-6 col-6 col-md-6 col-lg-3 col-xxl-3 m-2 status">
-      <h2>Terminé</h2>
+   <div class="col-xs-6 col-6 col-md-6 col-lg-3 col-xxl-3 m-3 status">
+      <h3>Terminé</h3>
       <bs-sortable
          [(ngModel)]="done"
          fieldName="title"
@@ -130,26 +130,29 @@
    
    <ng-template #taskTemplate let-item="item" let-index="index">
       <div class="d-flex justify-content-between align-items-center">
-         <div>{{ item.initData.title }}</div>
+         <div class="taskContainer">{{ item.initData.title }}</div>
          
-         <!-- Bouton visualisation des détails de la tâche -->
-         <div type="button" class="btn btn-info icons" (click)="getTaskDetails(item.initData.id)">
-            <i class="bi bi-eye-fill taskDetail"></i>
-         </div>
-   
-         <!-- Bouton pour modifier la tâche -->
-         <div type="button" routerLink="/task/update" class="btn btn-success icons" (click)="redirectUpdateForm(projectId, item.initData.id)">
-            <i class="bi bi-pencil-fill"></i>
-         </div>
-   
-         <!-- Bouton pour supprimer la tâche -->
-         <div type="button" class="btn btn-danger icons" (click)="deleteTask(projectId, item.initData.id)">
-            <i class="bi bi-trash-fill"></i>
+         <div class="d-flex iconContainer">
+            <!-- Bouton visualisation des détails de la tâche -->
+            <div type="button" class="btn btn-info icons" (click)="getTaskDetails(item.initData.id)">
+               <i class="bi bi-eye-fill taskDetail"></i>
+            </div>
+      
+            <!-- Bouton pour modifier la tâche -->
+            <div type="button" routerLink="/task/update" class="btn btn-success icons editTask" (click)="redirectUpdateForm(projectId, item.initData.id)">
+               <i class="bi bi-pencil-fill"></i>
+            </div>
+      
+            <!-- Bouton pour supprimer la tâche -->
+            <div type="button" class="btn btn-danger icons" (click)="deleteTask(projectId, item.initData.id)">
+               <i class="bi bi-trash-fill"></i>
+            </div>
+
          </div>
       </div>
    </ng-template>
  
 </div>
 <div class="d-flex justify-content-center">
-   <button type="button" class="btn btn-primary" (click)="onTaskAdding(projectId)" *ngIf="projectId">Ajouter une tâche</button>
+   <button type="button" class="btn btn-primary addTask" (click)="onTaskAdding(projectId)" *ngIf="projectId">Ajouter une tâche</button>
 </div>

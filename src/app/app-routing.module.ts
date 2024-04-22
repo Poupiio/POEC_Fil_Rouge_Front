@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ProjectComponent } from './project/project.component';
 import { TaskComponent } from './task/task.component';
-import { UpdatetaskComponent } from './updatetask/updatetask.component';
+import { UpdateTaskComponent } from './updatetask/updatetask.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "project", component: ProjectComponent },
   { path: "task/add", component: TaskComponent },
-  { path: "task/update/:projectId/:taskId", component: UpdatetaskComponent },
+  { path: "task/update/:projectId/:taskId", component: UpdateTaskComponent },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "user", component: UserComponent },
