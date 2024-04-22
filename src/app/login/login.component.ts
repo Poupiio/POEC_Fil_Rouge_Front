@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     } else {
       this.email = "";
       this.password = "";
-      this.router.navigate(['/dragdrop']);
+      this.router.navigate(['/project']);
     }
   }
 

@@ -13,7 +13,7 @@ export class MyhttpService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const authReq = req.clone({
       setHeaders: {
-        Authorization: this.auth.accessToken ? `Bearer ${this.auth.accessToken}` : ""
+        Authorization: this.auth.token ? `Bearer ${this.auth.token}` : ""
       }
     });
     const apiReq = authReq.clone({ url: `http://localhost:8080${req.url}` });

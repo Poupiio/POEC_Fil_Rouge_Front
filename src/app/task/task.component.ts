@@ -3,6 +3,7 @@ import { TaskStatus, TaskForm, TaskToDisplay, Task } from "../types";
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../services/task.service';
 import { ProjectService } from '../services/project.service';
+import { AuthGuard } from '../auth.guard';
 
 @Component({
   selector: 'app-task',
@@ -25,7 +26,8 @@ export class TaskComponent implements OnInit {
   constructor(
     private router: Router,
     private taskService: TaskService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authGuard: AuthGuard
   ) { }
 
 

@@ -4,16 +4,18 @@ import { User } from './types';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 type LoginResponse = {
-  accessToken: string
+  token: string
 } | string;
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  accessToken: string | null = null;
+  token: string | null = null;
   user: User | null = null;
+  userId?: number;
 
   private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
@@ -26,13 +28,13 @@ export class AuthService {
 
   // Connexion automatique
   private async loginFromLocalStorage() {
-    const accessToken = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
-    if (!accessToken) return;
+    if (!token) return;
 
-    this.accessToken = accessToken;
+    this.token = token;
     
-    const payload = this.accessToken.split(".")[1];
+    const payload = this.token.split(".")[1];
     const decoded = atob(payload);
     const user = JSON.parse(decoded) as User;
     this.user = user;
@@ -46,19 +48,23 @@ export class AuthService {
         email,
         password
       }).toPromise();
-      
-  
+ 
       if (typeof res === "string" || !res)
         throw new Error(res);
 
-      const payload = res.accessToken.split(".")[1];
+      
+      const payload = res.token.split(".")[1];
       const decoded = atob(payload);
       const user = JSON.parse(decoded) as User;
-      
-      this.accessToken = res.accessToken;
-      this.user = user;
 
-      localStorage.setItem("token", this.accessToken);
+      // Récupération de l'id du user pour le stocker dans le LS
+      this.userId = user.id;
+      localStorage.setItem("userId", this.userId.toString());
+      
+      this.token = res.token;
+      this.user = user;
+      
+      localStorage.setItem("token", this.token);
       this.isLoggedInSubject.next(true);
       
       return user;
@@ -74,7 +80,7 @@ export class AuthService {
 
   async logOut() {
     localStorage.clear();
-    this.accessToken = "";
+    this.token = "";
     this.user = null;
     this.isLoggedInSubject.next(false);
   }

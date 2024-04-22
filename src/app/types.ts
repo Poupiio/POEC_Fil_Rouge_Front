@@ -1,4 +1,5 @@
 export type User = {
+    id: number;
     name: string;
     password: string;
     email: string;
@@ -6,11 +7,6 @@ export type User = {
     sub: string;   // correspond à l'id du User
     exp: string;   // expiration date
     iat: number;   // issued at (date)
-}
-
-export type IItemObject = {
-    id: number;
-    name: string;
 }
 
 export const enum TaskStatus {
@@ -28,6 +24,7 @@ export type Project = {
 
 export type ProjectForm = {
     name: string;
+    userId: number;
 }
 
 export type UserToGet = {

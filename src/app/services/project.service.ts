@@ -10,17 +10,15 @@ import { Observable, tap } from 'rxjs';
 export class ProjectService {
   projects: Project[] = [];
   user: UserToGet | undefined;
+  userId: number = parseInt(localStorage.getItem('userId')!);
 
   constructor(private http: HttpClient,
     private userService: UserService
   ) { }
 
-
-  // TEST SANS AVOIR DE USER
-
   // Afficher tous les projets de la BDD
-  getProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>("/project")
+  getProjects(userId: number): Observable<Project[]> {
+    return this.http.get<Project[]>(`/project/user/${userId}`)
     .pipe();
   }
 
@@ -31,11 +29,17 @@ export class ProjectService {
 
   // Ajouter un projet
   async addProject(project: ProjectForm) {
+    console.log(project);
+    
     const newProject = await this.http.post<Project>("/project", project).toPromise();
     if (!newProject) throw new Error("Projet non créé.");
 
+    console.log("coucou côté service");
+    
+    console.log("user id côté service " + this.userId);
+    
     // Mise à jour de la liste des projets depuis le serveur
-    this.getProjects().subscribe(projects => {
+    this.getProjects(this.userId).subscribe(projects => {
       this.projects = projects;
     });
   }
@@ -48,7 +52,7 @@ export class ProjectService {
       if (!updatedProject) throw new Error("Aucun projet à modifier");
   
       // Mise à jour de la liste des projets depuis le serveur
-      this.getProjects().subscribe(projects => {
+      this.getProjects(this.userId).subscribe(projects => {
         this.projects = projects;
       });
 

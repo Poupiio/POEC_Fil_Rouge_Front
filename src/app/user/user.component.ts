@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthGuard } from '../auth.guard';
 
 @Component({
   selector: 'app-user',
@@ -8,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authGuard: AuthGuard) { }
 
   ngOnInit(): void {
   }
