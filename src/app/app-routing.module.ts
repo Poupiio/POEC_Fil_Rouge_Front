@@ -7,6 +7,7 @@ import { UpdateTaskComponent } from './updatetask/updatetask.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
