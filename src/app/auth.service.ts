@@ -82,6 +82,7 @@ export class AuthService {
     localStorage.clear();
     this.token = "";
     this.user = null;
+    this.userId = undefined;
     this.isLoggedInSubject.next(false);
   }
 

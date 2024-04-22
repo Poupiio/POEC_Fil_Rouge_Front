@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  // async logout() {
-
-  // }
+  async logout() {
+    await this.auth.logOut();
+  }
 }
