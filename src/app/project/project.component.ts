@@ -35,6 +35,8 @@ export class ProjectComponent implements OnInit {
 
   // Affichage du formulaire de création de tâche
   projectId: number = 1;
+
+  userId: number = parseInt(localStorage.getItem('userId')!);
   
 
   constructor(
@@ -102,24 +104,32 @@ export class ProjectComponent implements OnInit {
       console.error('Erreur lors de la récupération du projet :', error);
     }
   }
+  
+  
+  // Afficher tous les projets du user connecté
+  async getProjects(userId: number) {
 
-  // Afficher tous les projets
-  async getProjects() {
-    this.projectService.getProjects().subscribe(res => {
+    this.projectService.getProjects(userId).subscribe(res => {
+      console.log(res);
+      
       this.projects = res;
     });
   }
 
   // Ajouter un projet
   async addProject() {
+
+    console.log("coucou côté component");
+    
     // Données à envoyer au serveur
     const newProject: ProjectForm = { 
-      name: this.projectName
+      name: this.projectName,
+      userId: this.userId
      };
 
     try {
       await this.projectService.addProject(newProject);
-      await this.getProjects();
+      await this.getProjects(this.userId);
       
       // Je masque le formulaire d'ajout
       this.addForm = false;
@@ -135,6 +145,7 @@ export class ProjectComponent implements OnInit {
     // Données à envoyer au serveur
     const updatedProjectName: ProjectForm = {
       name: this.updatedProjectName,
+      userId: this.userId
     };
 
     try {
@@ -165,7 +176,7 @@ export class ProjectComponent implements OnInit {
 
       // Mise à jour de la liste sans avoir à refresh la page
       this.projects = this.projects.filter(projects => projects.id !== projectId);
-      this.getProjects();
+      this.getProjects(this.userId);
     } catch (error) {
       console.error("Une erreur s'est produite lors de la suppression du projet", error);
     }
@@ -179,7 +190,7 @@ export class ProjectComponent implements OnInit {
 
 
 
-   // PARTIE TASKS (PENSER A DECOUPER EN 2 COMPOSANTS POUR LES TACHES)
+  //  PARTIE TASKS (PENSER A DECOUPER EN 2 COMPOSANTS POUR LES TACHES)
 
   // Afficher les tâches d'un projet en fonction de son ID
   getProjectTasks(projectId: number): void {
@@ -254,9 +265,6 @@ export class ProjectComponent implements OnInit {
     
   }
 
-
-
-
   ngOnInit(): void {
     // Je récupère l'id du projet depuis les paramètres de l'URL
     this.route.queryParams.subscribe(params => {
@@ -288,5 +296,6 @@ export class ProjectComponent implements OnInit {
         }
       );
     }
+
   }
 }

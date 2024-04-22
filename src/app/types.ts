@@ -9,11 +9,6 @@ export type User = {
     iat: number;   // issued at (date)
 }
 
-export type IItemObject = {
-    id: number;
-    name: string;
-}
-
 export const enum TaskStatus {
     TO_DO = "TO_DO",
     ONGOING = "ONGOING",
@@ -29,6 +24,7 @@ export type Project = {
 
 export type ProjectForm = {
     name: string;
+    userId: number;
 }
 
 export type UserToGet = {
