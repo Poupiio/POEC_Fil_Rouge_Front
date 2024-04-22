@@ -35,7 +35,7 @@
 
       <!-- Affichage du formulaire d'ajout de projet -->
      <ng-container *ngIf="addForm">
-        <form class="form mx-auto addProjectForm" #projectAddForm="ngForm" (ngSubmit)="addProject(projectName)">
+        <form class="form mx-auto addProjectForm" #projectAddForm="ngForm">
            
            <div class="input-group mb-3">
               <span class="input-group-text" id="projectName">Nom</span>
@@ -49,13 +49,13 @@
               name="projectName"
               />
            </div>
-           <button type="button" class="btn btn-primary">Ajouter</button>
+           <button type="button" class="btn btn-primary" (click)="addProject()">Ajouter</button>
         </form>
      </ng-container>
 
      <!-- Affichage du formulaire de modification de projet -->
      <ng-container *ngIf="updateForm">
-        <form class="form mx-auto updateProjectForm" #projectEditForm="ngForm" (ngSubmit)="editProject(selectedProjectId)">
+        <form class="form mx-auto updateProjectForm" #projectEditForm="ngForm">
            
            <div class="input-group mb-3">
               <span class="input-group-text" id="updatedProjectName">Nom</span>
@@ -69,7 +69,7 @@
               name="updatedProjectName"
               />
            </div>
-           <button type="button" class="btn btn-primary">Modifier</button>
+           <button type="button" class="btn btn-primary" (click)="editProject(selectedProjectId)">Modifier</button>
         </form>
      </ng-container>
 
@@ -81,7 +81,7 @@
 <div class="row wrapper mx-auto d-flex justify-content-center" *ngIf="projectId">
 
    <!--  COLONNE À FAIRE -->
-   <div class="col-xs-6 col-6 col-md-6 col-lg-3 col-xxl-3 m-3 status">
+   <div class="col-xs-6 col-6 col-md-5 col-lg-4 col-xxl-3 m-3 status">
       <h3>À faire</h3>
       <bs-sortable
          [(ngModel)]="todo"
@@ -97,7 +97,7 @@
    </div>
 
    <!-- COLONNE EN COURS -->
-   <div class="col-xs-6 col-6 col-md-6 col-lg-3 col-xxl-3 m-3 status">
+   <div class="col-xs-6 col-6 col-md-5 col-lg-4 col-xxl-3 m-3 status">
       <h3>En cours</h3>
       <bs-sortable
          [(ngModel)]="ongoing"
@@ -113,7 +113,7 @@
    </div>
 
    <!-- COLONNE TERMINÉ -->
-   <div class="col-xs-6 col-6 col-md-6 col-lg-3 col-xxl-3 m-3 status">
+   <div class="col-xs-6 col-6 col-md-5 col-lg-4 col-xxl-3 m-3 status">
       <h3>Terminé</h3>
       <bs-sortable
          [(ngModel)]="done"
