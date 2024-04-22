@@ -18,11 +18,11 @@ h1 {
    width: 500px;
    height: 500px;
    margin: 0 auto;
-   padding: 15px;
-   border-radius: 50%;
+   margin-bottom: 3em;
+   border-radius: 16px;
    
    background: rgba(173, 176, 229, 0.19);
-   box-shadow: 0px 0px 20px 6px #fdb3d8b3;
+   box-shadow: 0px 0px 20px 6px rgb(185, 240, 245);
    backdrop-filter: blur(6.6px);
 
    color: #ADB0E5;
@@ -38,7 +38,7 @@ h1 {
    }
    
    .loginBtn {
-      background: #9a83acc6;
+      background: #ADB0E5;
       color: white;
       padding: 0.5rem 1.5rem;
       border: none;
@@ -64,23 +64,28 @@ h1 {
          transform: scale(1.1);
       }
    }
+
+   
 }
 
-.registerForm {
-   box-shadow: 0px 0px 20px 6px rgb(185, 240, 245);
-}
-
-@media screen and (max-width: 860px) {
+@media screen and (min-width: 1100px) and (max-width: 1399px){
    .loginForm {
-      width: 450px;
-      height: 450px;
+      width: 500px;
+      height: 500px;
+      
+   }
+   h1{
+      width: 500px;
    }
 }
 
-@media screen and (max-width: 492px) {
+@media screen and (min-width: 500px) and (max-width: 1099px) {
    .loginForm {
-      width: 400px;
-      height: 400px;
+      width: 375px;
+      height: 375px;
+   }
+   h1{
+      width: 375px;
    }
 }
 
@@ -90,4 +95,10 @@ h1 {
       height: 350px;
       border-radius: 18px;
    }
+
+   h1 {
+      width: 11.9em;
+   }
+
+   
 }
