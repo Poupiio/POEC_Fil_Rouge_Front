@@ -4,41 +4,31 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { HomeComponent } from './home/home.component';
-
-import { UserComponent } from './user/user.component';
-import { RegisterComponent } from './register/register.component';
-import { ButtonComponent } from './button/button.component';
-
-
-import { PageProjetsComponent } from './page-projets/page-projets.component';
-import { TasksComponent } from './tasks/tasks.component';
-import { ProjetsListComponent } from './projets-list/projets-list.component';
-import { FormsModule } from '@angular/forms';
+import { ProjectComponent } from './project/project.component';
+import { TaskComponent } from './task/task.component';
+import { UpdatetaskComponent } from './updatetask/updatetask.component';
 import { LoginComponent } from './login/login.component';
-import { FormulaireProjetComponent } from './formulaire-projet/formulaire-projet.component';
+import { RegisterComponent } from './register/register.component';
+import { UserComponent } from './user/user.component';
+
+import { FormsModule } from '@angular/forms';
 import { SortableModule } from 'ngx-bootstrap/sortable';
-
-
-
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { MyhttpService } from 'myhttp.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-
-    UserComponent,
-    RegisterComponent,
-    ButtonComponent,
- 
-
-    PageProjetsComponent,
-    TasksComponent,
-    ProjetsListComponent,
+    ProjectComponent,
+    TaskComponent,
+    UpdatetaskComponent,
     LoginComponent,
-    FormulaireProjetComponent
-    
+    RegisterComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,8 +36,14 @@ import { SortableModule } from 'ngx-bootstrap/sortable';
     BrowserAnimationsModule,
     FormsModule,
     SortableModule.forRoot(),
+    HttpClientModule
   ],
   providers: [
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: MyhttpService,
+    multi: true
+  }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,22 +1,31 @@
 <header>
-    <nav class = "navbar">
-        <div class="navbar-item">
-            <a routerLink = "/home">Home</a>
-        </div>   
-        <div class="navbar-item">
-            <a routerLink="/login">Login</a>
-        </div>
-        <div class="navbar-item">
-            <a routerLink="/page-projets">Page-projets</a>
-        </div>
-        <div class="navbar-item">
-            <a routerLink="/tasks">Mes Tasks</a>
-        </div>
-       
-
-       
-    </nav>
+   <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+         <a class="navbar-brand" routerLink="/">
+            <img src="../assets/images/logo2.png" alt="Logo" width="100" height="100" class="d-inline-block align-text-top">
+         </a>
+         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav main-menu">
+               <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" routerLink="/">Accueil</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" routerLink="/project">Mes projets</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" routerLink="/login" *ngIf="!isLoggedIn">Connexion</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" routerLink="/login" *ngIf="isLoggedIn" (click)="logout()">Déconnexion</a>
+               </li>
+            </ul>
+         </div>
+      </div>
+   </nav>
 </header>
-
-<router-outlet></router-outlet>
-
+ 
+ <router-outlet></router-outlet>
