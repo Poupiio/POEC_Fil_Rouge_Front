@@ -5,6 +5,7 @@ import { Project, TaskStatus, TaskToDisplay, Task, TaskForm, ProjectForm } from 
 import { UserService } from '../services/user.service';
 // import { TaskDataService } from '../services/task-data.service';
 import { TaskService } from '../services/task.service';
+import { AuthGuard } from '../auth.guard';
 
 @Component({
   selector: 'app-project',
@@ -44,7 +45,8 @@ export class ProjectComponent implements OnInit {
     private userService: UserService,
     private taskService: TaskService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authGuard: AuthGuard
   ) { }
 
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../services/task.service';
 import { TaskForm, TaskStatus, Task } from '../types';
+import { AuthGuard } from '../auth.guard';
 
 @Component({
   selector: 'app-update-task',
@@ -22,7 +23,8 @@ export class UpdateTaskComponent implements OnInit {
   constructor(
     private router: Router,
     private taskService: TaskService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authGuard: AuthGuard
   ) { }
 
   
