@@ -12,9 +12,7 @@ export class ProjectService {
   user: UserToGet | undefined;
   userId: number = parseInt(localStorage.getItem('userId')!);
 
-  constructor(private http: HttpClient,
-    private userService: UserService
-  ) { }
+  constructor(private http: HttpClient) { }
 
   // Afficher tous les projets de la BDD
   getProjects(userId: number): Observable<Project[]> {
@@ -23,8 +21,7 @@ export class ProjectService {
   }
 
   getProjectById(id: number): Observable<Project> {
-    return this.http.get<Project>(`/project/${id}`).pipe(tap(proj => console.log(proj))
-    );
+    return this.http.get<Project>(`/project/${id}`).pipe();
   }
 
   // Ajouter un projet
@@ -33,10 +30,6 @@ export class ProjectService {
     
     const newProject = await this.http.post<Project>("/project", project).toPromise();
     if (!newProject) throw new Error("Projet non créé.");
-
-    console.log("coucou côté service");
-    
-    console.log("user id côté service " + this.userId);
     
     // Mise à jour de la liste des projets depuis le serveur
     this.getProjects(this.userId).subscribe(projects => {
