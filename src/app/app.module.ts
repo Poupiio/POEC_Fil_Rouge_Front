@@ -13,10 +13,11 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsModule
+import { FormsModule } from '@angular/forms';
 import { SortableModule } from 'ngx-bootstrap/sortable';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MyhttpService } from 'myhttp.service';
+
 
 @NgModule({
   declarations: [
@@ -34,16 +35,15 @@ import { MyhttpService } from 'myhttp.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule, // Add ReactiveFormsModule here
     SortableModule.forRoot(),
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [
     {
-      provide: HTTP_INTERCEPTORS,
-      useClass: MyhttpService,
-      multi: true
-    }
+    provide: HTTP_INTERCEPTORS,
+    useClass: MyhttpService,
+    multi: true
+  }
   ],
   bootstrap: [AppComponent]
 })
