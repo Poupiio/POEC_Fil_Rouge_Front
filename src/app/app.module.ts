@@ -13,10 +13,11 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Importez FormsModule et ReactiveFormsModule
 import { SortableModule } from 'ngx-bootstrap/sortable';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MyhttpService } from 'myhttp.service';
+
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { MyhttpService } from 'myhttp.service';
     BrowserAnimationsModule,
     FormsModule,
     SortableModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     {
