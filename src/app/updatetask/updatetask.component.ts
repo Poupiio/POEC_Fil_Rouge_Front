@@ -16,6 +16,7 @@ export class UpdateTaskComponent implements OnInit {
   status: TaskStatus = TaskStatus.TO_DO;
   estimation: number = 1;
   taskId: number = 1;
+  projectId: number = 1;
 
   tasks: Task[] = [];
 
@@ -60,6 +61,12 @@ export class UpdateTaskComponent implements OnInit {
     
   }
 
+  goBack() {
+    this.route.params.subscribe(params => {
+      const projectId = params['projectId'];
+      this.router.navigate(['/project'], { queryParams: { projectId: projectId } });
+    });
+  }
 
   ngOnInit(): void {
     // Je récupère les détails de la tâche cliquée afin d'attribuer ses valeurs aux champs correspondants dans le formulaire
