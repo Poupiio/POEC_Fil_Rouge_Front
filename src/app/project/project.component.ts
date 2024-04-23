@@ -1,17 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProjectService } from '../services/project.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Project, TaskStatus, TaskToDisplay, Task, TaskForm, ProjectForm } from '../types';
-import { UserService } from '../services/user.service';
-// import { TaskDataService } from '../services/task-data.service';
+import { Project, TaskStatus, TaskToDisplay, Task, ProjectForm, TaskForm } from '../types';
 import { TaskService } from '../services/task.service';
-import { AuthGuard } from '../auth.guard';
 
 @Component({
   selector: 'app-project',
   templateUrl: "./project.component.html",
-  styleUrls: [ "./project.component.scss"
-  ]
+  styleUrls: [ "./project.component.scss" ]
 })
 export class ProjectComponent implements OnInit {
   isPageLoaded: boolean = false;
@@ -38,20 +34,21 @@ export class ProjectComponent implements OnInit {
   projectId: number = 1;
 
   userId: number = parseInt(localStorage.getItem('userId')!);
-  
 
+  title: string = "";
+  description: string = "";
+  status: TaskStatus = TaskStatus.TO_DO;
+  estimation: number = 1;
+  taskId: number = 1;
+  
   constructor(
     private projectService: ProjectService,
-    private userService: UserService,
     private taskService: TaskService,
     private router: Router,
-    private route: ActivatedRoute,
-    private authGuard: AuthGuard
+    private route: ActivatedRoute
   ) { }
 
 
-  // PARTIE PROJETS (PENSER A DECOUPER EN 2 COMPOSANTS POUR LES TACHES)
-  
   // Gestion de l'affichage de la side bar
   toggleOffcanvas(): void {
     this.offcanvasVisible = !this.offcanvasVisible;
@@ -75,7 +72,6 @@ export class ProjectComponent implements OnInit {
   // Passage du nom du projet au titre de la page
   updatePageTitle(projectName: string): void {
     this.pageTitle = projectName;
-    console.log("fonction updatePageTitle titre : " + projectName);
   }
 
   // Affichage du formulaire d'ajout de projet
@@ -97,8 +93,6 @@ export class ProjectComponent implements OnInit {
   // Obtenir l'id du projet cliqué : je me sers de cette fonction pour récupérer le nom du projet pour l'afficher par la suite
   async getProjectById(projectId: number) {
     this.projectId = projectId;
-    console.log("project id " + projectId);
-    
     try {
       const project = await this.projectService.getProjectById(projectId).toPromise();
       this.currentProjectName = project?.name;
@@ -112,17 +106,12 @@ export class ProjectComponent implements OnInit {
   async getProjects(userId: number) {
 
     this.projectService.getProjects(userId).subscribe(res => {
-      console.log(res);
-      
       this.projects = res;
     });
   }
 
   // Ajouter un projet
   async addProject() {
-
-    console.log("coucou côté component");
-    
     // Données à envoyer au serveur
     const newProject: ProjectForm = { 
       name: this.projectName,
@@ -152,7 +141,6 @@ export class ProjectComponent implements OnInit {
 
     try {
       this.projectService.updateProject(projectId, updatedProjectName);
-      
 
       // Mettre à jour le nom du projet dans la liste
       // Je cherche l'index du projet dans la liste, et celui dont l'id matche avec l'id du projet modifié, je modifie le nom côté navigateur
@@ -190,15 +178,8 @@ export class ProjectComponent implements OnInit {
   }
 
 
-
-
-  //  PARTIE TASKS (PENSER A DECOUPER EN 2 COMPOSANTS POUR LES TACHES)
-
   // Afficher les tâches d'un projet en fonction de son ID
   getProjectTasks(projectId: number): void {
-    // projectId = this.projectId;
-    console.log("id avant requête " + projectId);
-    
     // Je récupère les tâches depuis la BDD
     this.taskService.getAllTasks(projectId).subscribe(res => {
       this.tasks = res;
@@ -225,24 +206,46 @@ export class ProjectComponent implements OnInit {
     this.done = this.tasks
       .filter(task => task.status === TaskStatus.DONE)
       .map(task => ({ title: task.title, id: task.id }));
-  
   }
 
   updateTasksDisplay() {
     this.taskService.getAllTasks(this.projectId).subscribe(res => {
       this.tasks = res;
-      console.log(res);
-      
+
       // Puis je les dispatche dans les colonnes correspondant au statut de la tâche
       this.displayTasks();
     });
   }
 
-  getTaskDetails(id: number) {
-    console.log("Détails d'une tâche");
-    
+
+  statusModal: string = ""; // Modifier le type de la variable pour qu'il soit de type string
+
+  getTaskDetails(taskId: number) {
+    try {
+      this.taskService.getTaskById(this.projectId, taskId).subscribe(res => {
+        this.title = res.title;
+        this.description = res.description || "";
+        this.estimation = res.estimationHours;
+        this.statusModal = this.mapStatus(res.status);
+      });
+    } catch (error) {
+      console.error("Une erreur s'est produite lors de la récupération des détails de la tâche", error);
+    }
   }
 
+  // Attribuer des valeurs en string pour chaque type de statut
+  mapStatus(status: string): string {
+    switch (status) {
+      case TaskStatus.TO_DO:
+        return "À faire";
+      case TaskStatus.ONGOING:
+        return "En cours";
+      case TaskStatus.DONE:
+        return "Terminé";
+      default:
+        return "Inconnu";
+    }
+  }
   // Redirection vers le formulaire de modification de tâche
   redirectUpdateForm(projectId: number, taskId: number) {
     this.router.navigate([`/task/update/${projectId}/${taskId}`]);
@@ -250,14 +253,9 @@ export class ProjectComponent implements OnInit {
 
   // Supprimer une tâche en fonction du projet sélectionné
   async deleteTask(projectId: number, taskId: number) {
-    console.log("id de la tâche à supprimer " + taskId);
-    console.log("id du projet " + projectId);
-    
-
     try {
       await this.taskService.deleteTask(projectId, taskId);
 
-      
       // Mise à jour de la liste sans avoir à refresh la page
       this.tasks = this.tasks.filter(task => task.id !== taskId);
       this.displayTasks();
@@ -266,6 +264,7 @@ export class ProjectComponent implements OnInit {
     }
     
   }
+
 
   ngOnInit(): void {
     // Je récupère l'id du projet depuis les paramètres de l'URL
@@ -284,8 +283,6 @@ export class ProjectComponent implements OnInit {
 
             // J'affiche les tâches quand le projet est récupéré
             this.taskService.getAllTasks(this.projectId).subscribe(res => {
-              console.log(res);
-              
               this.tasks = res;
               this.displayTasks();
             });

@@ -54,6 +54,7 @@ export type TaskForm = {
 }
 
 export type TaskToDisplay = {
+    id: number;
     title: string;
 }
 

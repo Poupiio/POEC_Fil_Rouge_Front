@@ -1,36 +1,45 @@
 <h1>Créer un compte</h1>
-<div class="container ">
+<div class="container">
   <form
     class="form mx-auto col-4 registerForm d-flex flex-column align-items-center justify-content-center"
   >
   <div class="mb-3">
     <label for="name" class="form-label registerLabel">Nom et prénom</label>
-    <input type="text" [(ngModel)]="username" [formControl]="usernameControl" name="username" class="form-control registerInput test">
-<div *ngIf="usernameControl.invalid && (usernameControl.dirty || usernameControl.touched)">
-  <div *ngIf="usernameControl.hasError('required')">Le nom d'utilisateur est requis</div>
-</div>
-
-<label for="name" class="form-label registerLabel">Email</label>
-<input type="email" [(ngModel)]="email" [formControl]="emailControl" name="email" class="form-control registerInput test">
-<div *ngIf="emailControl.invalid && (emailControl.dirty || emailControl.touched)">
-  <div *ngIf="emailControl.hasError('required')">L'e-mail est requis</div>
-  <div *ngIf="emailControl.hasError('email')">L'e-mail n'est pas valide</div>
-</div>
-
-<label for="name" class="form-label registerLabel">Mot de passe</label>
-  <input type="password" [(ngModel)]="password" [formControl]="passwordControl" name="password" class="form-control registerInput test">
-  <div class="d-flex justify-content-center" *ngIf="passwordControl.invalid && (passwordControl.dirty || passwordControl.touched)">
-    <div class="d-flex flex-column registerPasswordvalidators">
-      <div class="registerPasswordvalidator" *ngIf="passwordControl.hasError('required')">Le mot de passe est requis</div>
-      <div class="registerPasswordvalidator" *ngIf="passwordControl.hasError('minlength')">Le mot de passe doit comporter au moins 6 caractères</div>
-      <div class="registerPasswordvalidator" *ngIf="passwordControl.hasError('invalidPassword')">1 lettre, 1 chiffre, 1 caractère spécial requis.</div>
+    <input
+      type="name"
+      class="form-control registerInput"
+      id="name"
+      placeholder="Jean-Jacques Martin"
+      [(ngModel)]="username"
+      name="username"
+    />
+    <div class="mb-3">
+      <label for="email" class="form-label registerLabel">Email</label>
+      <input
+        type="email"
+        class="form-control registerInput"
+        id="email"
+        aria-describedby="emailHelp"
+        placeholder="jeanjacques@gmail.com"
+        [(ngModel)]="email"
+        name="email"
+      />
     </div>
-</div>
-
-<div class="d-flex justify-content-center">
-  <button (click)="register(username, email, password)" class="btn btn-primary btn-lg registerBtn d-flex">S'inscrire</button>
-</div>
-
+    <div class="mb-3">
+      <label for="password" class="form-label registerLabel">Mot de passe</label>
+      <input
+        type="password"
+        class="form-control registerInput"
+        id="password"
+        [(ngModel)]="password"
+        name="password"
+      />
+    </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="button" class="btn btn-primary btn-lg registerBtn" (click)="register(username, email, password)">
+        Créer mon compte
+      </button>
     </div>
     <div class="d-flex justify-content-end">
       <a routerLink="/login" class="registerRedirect">Déjà un compte ?</a>

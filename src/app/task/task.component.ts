@@ -59,6 +59,10 @@ export class TaskComponent implements OnInit {
     }
   }
 
+  goBack() {
+    this.router.navigate(['/project'], { queryParams: { projectId: this.projectId } });
+  }
+
   ngOnInit(): void {
     // Récupération de l'id du projet passé en paramètre URL
     this.route.queryParams.subscribe(params => {

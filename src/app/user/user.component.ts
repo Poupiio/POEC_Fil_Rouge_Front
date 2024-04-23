@@ -9,8 +9,7 @@ import { AuthGuard } from '../auth.guard';
 })
 export class UserComponent implements OnInit {
 
-  constructor(
-    private authGuard: AuthGuard) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

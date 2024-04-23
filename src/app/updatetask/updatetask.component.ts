@@ -16,6 +16,7 @@ export class UpdateTaskComponent implements OnInit {
   status: TaskStatus = TaskStatus.TO_DO;
   estimation: number = 1;
   taskId: number = 1;
+  projectId: number = 1;
 
   tasks: Task[] = [];
 
@@ -24,7 +25,6 @@ export class UpdateTaskComponent implements OnInit {
     private router: Router,
     private taskService: TaskService,
     private route: ActivatedRoute,
-    private authGuard: AuthGuard
   ) { }
 
   
@@ -34,21 +34,19 @@ export class UpdateTaskComponent implements OnInit {
     });
   }
   
-  async submit(): Promise<void> {
+  async submit(title: string, description: string, status: TaskStatus, estimation: number): Promise<void> {
     
     // Récupération de l'id de la tâche via les paramètres url
     this.route.params.subscribe(params => {
       const taskId = params['taskId'];
       const projectId = params['projectId'];
       
-      console.log("id de la tâche " + taskId + " et id du projet " + projectId);
-      
       // Création d'un objet de type TaskToUpdate pour envoyer les données au serveur
       const updatedTask: TaskForm = {
-        title: this.title,
-        description: this.description,
-        status: this.status,
-        estimationHours: this.estimation,
+        title: title,
+        description: description,
+        status: status,
+        estimationHours: estimation,
         projectId: projectId
       };
       
@@ -63,6 +61,12 @@ export class UpdateTaskComponent implements OnInit {
     
   }
 
+  goBack() {
+    this.route.params.subscribe(params => {
+      const projectId = params['projectId'];
+      this.router.navigate(['/project'], { queryParams: { projectId: projectId } });
+    });
+  }
 
   ngOnInit(): void {
     // Je récupère les détails de la tâche cliquée afin d'attribuer ses valeurs aux champs correspondants dans le formulaire

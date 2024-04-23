@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { Observable, tap } from 'rxjs';
 import { User, UserForm } from '../types';
-import { HttpClient } from '@angular/common/http';
 import { UserService } from '../services/user.service';
-import { FormControl, Validators } from '@angular/forms'; // Importez FormControl et Validators
-import { AbstractControl, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -17,12 +13,7 @@ export class RegisterComponent implements OnInit {
   username: string = "";
   email: string = "";
   password: string = "";
-  
 
-  // Déclarez les contrôles de formulaire avec les validateurs requis
-  usernameControl = new FormControl('', [Validators.required]);
-  emailControl = new FormControl('', [Validators.required, Validators.email]);
-  passwordControl = new FormControl('', [Validators.required, Validators.minLength(6), passwordValidator()]);
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -61,13 +52,4 @@ export class RegisterComponent implements OnInit {
       console.error("Une erreur s'est produite lors de la création de l'utilisateur.");
     }
   }
-
-}
-
-export function passwordValidator(): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: any } | null => {
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,}$/;
-    const valid = passwordRegex.test(control.value);
-    return valid ? null : { 'invalidPassword': true };
-  };
 }
