@@ -4,7 +4,6 @@
    <form
       class="form mx-auto col-sm-12 col-md-10 col-lg-10 col-xl-8 col-xxl-6"
       #addTask="ngForm"
-      (ngSubmit)="submit()"
    >
 
    <!-- Title -->
@@ -72,7 +71,7 @@
    <div class="d-flex justify-content-end">
       <button
         type="submit"
-        class="btn btn-primary btn-lg addTask"
+        class="btn btn-primary btn-lg addTask" (click)="submit()"
       >
         &#43;
       </button>

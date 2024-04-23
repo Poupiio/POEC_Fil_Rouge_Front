@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { Observable, tap } from 'rxjs';
+import { User, UserForm } from '../types';
+import { HttpClient } from '@angular/common/http';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -8,24 +12,48 @@ import { AuthService } from '../auth.service';
   styleUrls: [ "/register.component.scss" ]
 })
 export class RegisterComponent implements OnInit {
-  name: string = "";
+  username: string = "";
   email: string = "";
   password: string = "";
 
 
   constructor(private router: Router,
-    private auth: AuthService) { }
+    private route: ActivatedRoute,
+    private userService: UserService,
+    private auth: AuthService  
+  ) { }
 
   ngOnInit(): void {
   }
 
-  async register() {
-    const res = await this.auth.register(this.name, this.email, this.password);
+  async register(username: string, email: string, password: string) {
+    // Vérifier d'abord si l'e-mail existe déjà
+    const emailExists = await this.userService.emailExists(this.email).toPromise();
 
-    // Si la création de l'utilisateur a réussi, j'exécute la fonction de login() pour qu'il soit automatiquement connecté et puisse avoir accès aux pages protégées
-    console.log(this.email, this.password);
-    await this.auth.login(this.email, this.password);
-    this.router.navigate(['/project']);
-    
+    // S'i existe déjà je renvoie une alerte à l'utilisateur et je stoppe la fonction
+    if (emailExists) {
+      console.log("L'e-mail existe déjà en base de données.");
+      // Gérer le cas où l'e-mail existe déjà, par exemple, afficher un message à l'utilisateur
+      alert("L'adresse email existe déjà");
+      return;
+    }
+
+    const newUser: UserForm = { 
+      username: username,
+      email: email,
+      password: password
+    };
+
+    try {
+      await this.userService.addUser(newUser);
+
+      // Une fois que l'utilisateur est ajouté avec succès, connectez-le automatiquement
+      await this.auth.login(email, password);
+
+      this.router.navigate(['/']);
+    } catch (error) {
+      console.error("Une erreur s'est produite lors de la création de l'utilisateur.");
+    }
   }
+
 }

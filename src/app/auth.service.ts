@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from './types';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { UserService } from './services/user.service';
 
 type LoginResponse = {
   token: string
@@ -22,9 +23,11 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
+    private userService: UserService,
   ) { 
     this.loginFromLocalStorage();
   }
+
 
   // Connexion automatique
   private async loginFromLocalStorage() {
@@ -74,39 +77,6 @@ export class AuthService {
         return e.error;
       } else {
         return "OH NO! An error has occured :(";
-      }
-    }
-  }
-
-  async register(name: string, email: string, password: string): Promise<User | string> {
-    try {
-      const res = await this.http.post<LoginResponse>("/user", {
-        name,
-        email,
-        password
-      }).toPromise();
-
-      if (typeof res === "string" || !res)
-        throw new Error(res);
-
-      const payload = res.token.split(".")[1];
-      const decoded = atob(payload);
-      const newUser = JSON.parse(decoded) as User;
-
-      this.token = res.token;
-      this.user = newUser;
-      this.userId = newUser.id;
-      localStorage.setItem("userId", this.userId.toString());
-
-      localStorage.setItem("token", this.token);
-      this.isLoggedInSubject.next(true);
-
-      return newUser;
-    } catch (e: any) {
-      if (e instanceof HttpErrorResponse) {
-        return e.error;
-      } else {
-        return "OH NO! An error has occurred :(";
       }
     }
   }
