@@ -221,19 +221,12 @@ export class ProjectComponent implements OnInit {
   statusModal: string = ""; // Modifier le type de la variable pour qu'il soit de type string
 
   getTaskDetails(taskId: number) {
-    console.log("id du projet : " + this.projectId);
-    console.log("id de la tâche " + taskId);
-
     try {
       this.taskService.getTaskById(this.projectId, taskId).subscribe(res => {
-        console.log(res);
-        
         this.title = res.title;
         this.description = res.description || "";
         this.estimation = res.estimationHours;
         this.statusModal = this.mapStatus(res.status);
-        console.log(this.statusModal);
-        
       });
     } catch (error) {
       console.error("Une erreur s'est produite lors de la récupération des détails de la tâche", error);
