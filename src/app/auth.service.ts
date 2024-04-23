@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from './types';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { UserService } from './services/user.service';
 
 type LoginResponse = {
   token: string
@@ -22,9 +23,11 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
+    private userService: UserService,
   ) { 
     this.loginFromLocalStorage();
   }
+
 
   // Connexion automatique
   private async loginFromLocalStorage() {
