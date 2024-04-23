@@ -33,39 +33,30 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
-
-  async register() {
-    // Vérifiez si les champs du formulaire sont valides
-    if (this.usernameControl.invalid || this.emailControl.invalid || this.passwordControl.invalid) {
-      console.log("Le formulaire est invalide.");
-      return;
-    }
-
+  async register(username: string, email: string, password: string) {
     // Vérifier d'abord si l'e-mail existe déjà
     const emailExists = await this.userService.emailExists(this.email).toPromise();
 
-    // Si l'e-mail existe déjà, renvoyer une alerte à l'utilisateur et arrêter la fonction
+    // S'i existe déjà je renvoie une alerte à l'utilisateur et je stoppe la fonction
     if (emailExists) {
-      console.log("L'e-mail existe déjà en base de données.");
       // Gérer le cas où l'e-mail existe déjà, par exemple, afficher un message à l'utilisateur
       alert("L'adresse email existe déjà");
       return;
     }
 
     const newUser: UserForm = { 
-      username: this.username,
-      email: this.email,
-      password: this.password
+      username: username,
+      email: email,
+      password: password
     };
 
     try {
       await this.userService.addUser(newUser);
 
       // Une fois que l'utilisateur est ajouté avec succès, connectez-le automatiquement
-      await this.auth.login(this.email, this.password);
+      await this.auth.login(email, password);
 
-      this.router.navigate(['/']);
+      this.router.navigate(['/project']);
     } catch (error) {
       console.error("Une erreur s'est produite lors de la création de l'utilisateur.");
     }
