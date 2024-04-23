@@ -9,6 +9,12 @@ export type User = {
     iat: number;   // issued at (date)
 }
 
+export type UserForm = {
+    username: string;
+    email: string;
+    password: string;
+}
+
 export const enum TaskStatus {
     TO_DO = "TO_DO",
     ONGOING = "ONGOING",
