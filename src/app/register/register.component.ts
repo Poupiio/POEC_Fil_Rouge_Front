@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { Observable, tap } from 'rxjs';
 import { User, UserForm } from '../types';
-import { HttpClient } from '@angular/common/http';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -55,5 +53,4 @@ export class RegisterComponent implements OnInit {
       console.error("Une erreur s'est produite lors de la création de l'utilisateur.");
     }
   }
-
 }
