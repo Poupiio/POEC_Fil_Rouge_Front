@@ -33,6 +33,8 @@
         id="password"
         [(ngModel)]="password"
         name="password"
+        minlength="8"
+        pattern="^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])(?=.{8,})"
       />
     </div>
     </div>
