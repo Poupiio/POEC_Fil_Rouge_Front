@@ -91,7 +91,7 @@
          placeholderItem="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
          placeholderClass="placeholderStyle text-center"
          wrapperClass="sortable-wrapper"
-         [itemTemplate]="taskTemplate"   
+         [itemTemplate]="taskTemplate"
       >
       </bs-sortable>
    </div>
@@ -134,7 +134,7 @@
          
          <div class="d-flex iconContainer">
             <!-- Bouton visualisation des détails de la tâche -->
-            <div type="button" class="btn btn-info icons" (click)="getTaskDetails(item.initData.id)">
+            <div type="button" class="btn btn-info icons" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getTaskDetails(item.initData.id)">
                <i class="bi bi-eye-fill taskDetail"></i>
             </div>
       
@@ -151,7 +151,27 @@
          </div>
       </div>
    </ng-template>
- 
+
+
+   <!-- Modal pour les détails d'une tâche -->
+   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h1 class="modal-title fs-5" id="exampleModalLabel">Détails de la tâche {{ title }}</h1>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <p>Titre : {{ title }}</p>
+               <p>Description : {{ description }}</p>
+               <p>État : {{ statusModal }}</p>
+               <p>Temps estimé : {{ estimation }} heure(s)</p>
+            </div>
+         </div>
+      </div>
+   </div>
+
+
 </div>
 <div class="d-flex justify-content-center">
    <button type="button" class="btn btn-primary addTask" (click)="onTaskAdding(projectId)" *ngIf="projectId">Ajouter une tâche</button>

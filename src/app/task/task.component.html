@@ -68,10 +68,16 @@
       />
    </div>
 
-   <div class="d-flex justify-content-end">
+  <div class="d-flex justify-content-between">
+    <button
+        type="button"
+        class="btn btn-primary btn-lg action" (click)="goBack()"
+      >
+      &#8592;
+      </button>
       <button
         type="submit"
-        class="btn btn-primary btn-lg addTask" (click)="submit()"
+        class="btn btn-primary btn-lg action" (click)="submit()"
       >
         &#43;
       </button>

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { Task, TaskForm } from '../types';
+import { Task, TaskForm, TaskStatus } from '../types';
 
 @Injectable({
   providedIn: 'root'
