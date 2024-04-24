@@ -55,6 +55,8 @@ export class AuthService {
       if (typeof res === "string" || !res)
         throw new Error(res);
 
+      console.log(res);
+      
       
       const payload = res.token.split(".")[1];
       const decoded = atob(payload);
@@ -63,6 +65,9 @@ export class AuthService {
       // Récupération de l'id du user pour le stocker dans le LS
       this.userId = user.id;
       localStorage.setItem("userId", this.userId.toString());
+
+      console.log(user.id);
+      
       
       this.token = res.token;
       this.user = user;

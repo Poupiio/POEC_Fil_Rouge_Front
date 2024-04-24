@@ -33,7 +33,6 @@ export class RegisterComponent implements OnInit {
   }
 
 
-
   async register(username: string, email: string, password: string) {
     // Vérifier d'abord si l'e-mail existe déjà
     const emailExists = await this.userService.emailExists(this.email).toPromise();
@@ -53,7 +52,9 @@ export class RegisterComponent implements OnInit {
 
     try {
       await this.userService.addUser(newUser);
-
+      
+      console.log(JSON.stringify(newUser));
+      
       // Une fois que l'utilisateur est ajouté avec succès, connectez-le automatiquement
       await this.auth.login(email, password);
 
