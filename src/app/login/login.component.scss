@@ -1,42 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+$primary-color: #F0F1FE;
+$secondary-color: #ADB0E5;
 
 h1 {
-   color: #ADB0E5ff;
+   color: $primary-color;
    text-transform: uppercase;
-   letter-spacing: 5px;
-   display: block;
-   width: 500px;
    text-align: center;
-   margin: 0 auto 50px;
-   padding: 15px 20px;
-   background: rgba(173, 176, 229, 0.08);
-   border-radius: 16px;
-   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-   backdrop-filter: blur(14.9px);
+   margin-bottom: 40px;
+   font-family: "Roboto Condensed", sans-serif;
 }
 
 .loginForm {
-   width: 500px;
-   height: 500px;
-   margin: 0 auto;
-   margin-bottom: 3em;
-   border-radius: 16px;
-   
+   padding: 25px 15px;
    background: rgba(173, 176, 229, 0.19);
-   box-shadow: 0px 0px 20px 6px rgb(185, 240, 245);
+   box-shadow: 0px 0px 15px 6px rgb(185, 240, 245);
    backdrop-filter: blur(6.6px);
+   border-radius: 10px;
+   font-family: "Roboto Condensed", sans-serif;
 
-   color: #ADB0E5;
-
-   .loginLabel {
+   label {
+      color: $primary-color;
       font-weight: 600;
-      font-size: 1.3rem;
+      font-size: 1.1rem;
    }
-   .loginInput {
+
+   input {
       &::placeholder {
          color: #ADB0E5;
       }
    }
-   
+
    .loginBtn {
       background: #ADB0E5;
       color: white;
@@ -47,58 +40,130 @@ h1 {
       text-transform: uppercase;
       font-weight: 600;
       transition: 0.3s ease-in-out;
-      margin-top: 25px;
+      margin: 20px 0;
    
       &:hover {
          box-shadow: 1px 1px 25px -5px #fff;
       }
    }
-   
-   .registerRedirect, .loginRedirect {
-      color: #fff;
-      font-size: 1.2rem;
-      margin-top: 25px;
+
+   .registerRedirect {
+      color: $primary-color;
       transition: 0.3s ease-in-out;
-   
+
       &:hover {
+         color: $secondary-color;
          transform: scale(1.1);
       }
    }
-
-   
 }
 
-@media screen and (min-width: 1100px) and (max-width: 1399px){
+@media screen and (max-width: 576px) {
    .loginForm {
-      width: 500px;
-      height: 500px;
+      width: 80%;
+
+      .inputGroup {
+         width: 80%;
+      }
+   }
+}
+
+@media screen and (max-width: 320px) {
+   .loginForm {
+      width: 90%;
+      padding: 15px 5px;
+
+      .loginBtn {
+         margin-top: 0;
+      }
+   }
+}
+
+// .loginForm {
+//    width: 500px;
+//    height: 500px;
+//    margin: 0 auto;
+//    margin-bottom: 3em;
+//    border-radius: 16px;
+   
+//    background: rgba(173, 176, 229, 0.19);
+//    box-shadow: 0px 0px 20px 6px rgb(185, 240, 245);
+//    backdrop-filter: blur(6.6px);
+
+//    color: #ADB0E5;
+
+//    .loginLabel {
+//       font-weight: 600;
+//       font-size: 1.3rem;
+//    }
+//    .loginInput {
+//       &::placeholder {
+//          color: #ADB0E5;
+//       }
+//    }
+   
+//    .loginBtn {
+//       background: #ADB0E5;
+//       color: white;
+//       padding: 0.5rem 1.5rem;
+//       border: none;
+//       font-size: 1.1rem;
+//       border-radius: 8px;
+//       text-transform: uppercase;
+//       font-weight: 600;
+//       transition: 0.3s ease-in-out;
+//       margin-top: 25px;
+   
+//       &:hover {
+//          box-shadow: 1px 1px 25px -5px #fff;
+//       }
+//    }
+   
+//    .registerRedirect, .loginRedirect {
+//       color: #fff;
+//       font-size: 1.2rem;
+//       margin-top: 25px;
+//       transition: 0.3s ease-in-out;
+   
+//       &:hover {
+//          transform: scale(1.1);
+//       }
+//    }
+
+   
+// }
+
+// @media screen and (min-width: 1100px) and (max-width: 1399px){
+//    .loginForm {
+//       width: 500px;
+//       height: 500px;
       
-   }
-   h1{
-      width: 500px;
-   }
-}
+//    }
+//    h1{
+//       width: 500px;
+//    }
+// }
 
-@media screen and (min-width: 500px) and (max-width: 1099px) {
-   .loginForm {
-      width: 375px;
-      height: 375px;
-   }
-   h1{
-      width: 375px;
-   }
-}
+// @media screen and (min-width: 500px) and (max-width: 1099px) {
+//    .loginForm {
+//       width: 375px;
+//       height: 375px;
+//    }
+//    h1{
+//       width: 375px;
+//    }
+// }
 
-@media screen and (max-width: 500px) {
-   .loginForm {
-      width: 350px;
-      height: 350px;
-      border-radius: 18px;
-   }
+// @media screen and (max-width: 500px) {
+//    .loginForm {
+//       width: 350px;
+//       height: 350px;
+//       border-radius: 18px;
+//    }
 
-   h1 {
-      width: 11.9em;
-   }
+//    h1 {
+//       width: 11.9em;
+//    }
 
    
-}
+// }

@@ -1,3 +1,6 @@
+$primary-color: #F0F1FE;
+$secondary-color: #ADB0E5;
+
 
 h1 {
     color: #ADB0E5ff;
@@ -15,97 +18,14 @@ h1 {
  }
  
  .registerForm {
-    width: 500px;
-    height: 600px;
-    margin: 0 auto;
-    margin-bottom: 3em;
-    border-radius: 16px;
-    
-    background: rgba(173, 176, 229, 0.19);
-    box-shadow: 0px 0px 20px 6px rgb(185, 240, 245);
-    backdrop-filter: blur(6.6px);
- 
-    color: var(--colorLogo);
- 
-    .registerLabel {
-       font-weight: 600;
-       font-size: 1.3rem;
-    }
-    .registerInput {
-        width: 333px;
-       &::placeholder {
-         color: var(--colorLogo);
-       }
-    }
-    
-    .registerBtn {
-       background: var(--colorLogo);
-       color: white;
-       padding: 0.5rem 1.5rem;
-       border: none;
-       font-size: 1.1rem;
-       border-radius: 8px;
-       text-transform: uppercase;
-       font-weight: 600;
-       transition: 0.3s ease-in-out;
-       margin-top: 25px;
-       display: flex;
-    
-       &:hover {
-          box-shadow: 1px 1px 25px -5px #fff;
-       }
-    }
-    
-    .registerRedirect, .registerRedirect {
-       color: #fff;
-       font-size: 1.2rem;
-       margin-top: 25px;
-       transition: 0.3s ease-in-out;
-    
-       &:hover {
-          transform: scale(1.1);
-       }
-    }
- 
-    
- }
+   border: solid 2px red;
+   padding: 10px 15px;
 
- .test{
-   margin-bottom: 1em;
+   label {
+      color: $primary-color;
+   }
+
+   input:focus {
+      outline: solid 1px $secondary-color;
+   }
  }
- 
- @media screen and (min-width: 1100px) and (max-width: 1399px){
-    .registerForm {
-       width: 500px;
-       height: 500px;
-       
-    }
-    h1{
-       width: 500px;
-    }
- }
- 
- @media screen and (min-width: 500px) and (max-width: 1099px) {
-    .registerForm {
-       width: 375px;
-       height: 450px;
-    }
-    h1{
-       width: 375px;
-    }
- }
- 
- @media screen and (max-width: 500px) {
-    .registerForm {
-       width: 350px;
-       height: 475px;
-       border-radius: 18px;
-    }
- 
-    h1 {
-       width: 11.9em;
-    }
- 
-    
- }
- 

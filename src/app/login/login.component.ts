@@ -19,15 +19,19 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async login() {
-    const res = await this.auth.login(this.email, this.password);
+  async login(email: string, password: string) {
+    try {
+      await this.auth.login(email, password);
 
-    if (typeof res === "string") {
-      alert("Email ou mot de passe invalide");
-    } else {
-      this.email = "";
-      this.password = "";
-      this.router.navigate(['/project']);
+    // if (typeof res === "string") {
+    //   alert("Email ou mot de passe invalide");
+    // } else {
+    //   this.email = "";
+    //   this.password = "";
+    //   this.router.navigate(['/project']);
+    // }
+    } catch(error) {
+      console.error("Une erreur s'est produite lors de la connexion", error);
     }
   }
 
